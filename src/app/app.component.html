@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <h1>{{ title }}</h1>
+    </div>
+  </div>
+  <hr />
+
+  <div class="row">
+    <div class="col-sm-4">
+      <ngb-datepicker
+        (dateSelect)="filterEventsbyDate()"
+        #dp
+        [(ngModel)]="date"
+      ></ngb-datepicker>
+    </div>
+    <div class="col-sm-8">
+      <br />
+      <div class="row d-flex justify-content-center">
+        <div class="col-sm-6 align-self-center">
+          <input
+            [(ngModel)]="inputEvent"
+            type="text"
+            class="form-control"
+            placeholder="type event here"
+          />
+        </div>
+
+        <div class="col-sm-3">
+          <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+        </div>
+
+        <div class="col-sm-3 align-self-center">
+          <button type="button" (click)="addEvent()" class="btn {{ btnColor }}">
+            {{ btnText }}
+          </button>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-sm-12">
+          <br />
+          <h3>Next Event</h3>
+          <i>{{ nextEvent }}</i>
+          <i> &nbsp; &nbsp;({{ nextEventCountDown }}) </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <table class="table table-hover table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th class="d-flex justify-content-start" scope="col">Event</th>
+            <th scope="col">Time</th>
+            <th class="d-flex justify-content-center" scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of EventsTemp">
+            <td
+              class="{{ event.isExpired ? 'expiredEvent' : '' }}"
+              class="d-flex justify-content-start"
+            >
+              {{ event.event }} {{ event.isExpired ? "(Expired)" : "" }}
+            </td>
+            <td class="{{ event.isExpired ? 'expiredEvent' : '' }}">
+              {{ event.time.hour + ":" + event.time.minute }}
+            </td>
+            <td class="d-flex justify-content-center">
+              <button
+                (click)="editEvent(event)"
+                type="button"
+                class="badge badge-pill badge-success"
+              >
+                Edit
+              </button>
+              <button
+                (click)="deleteEvent(event)"
+                type="button"
+                class="badge badge-pill badge-danger"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
