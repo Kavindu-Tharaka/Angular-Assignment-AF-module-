@@ -196,6 +196,7 @@ export class AppComponent implements OnInit{
           this.Events = this.Events.filter(
             (eventItem) => eventItem.id !== event.id
           );
+          this.nextEventReminder();
         }
       });
     }, 1000);
