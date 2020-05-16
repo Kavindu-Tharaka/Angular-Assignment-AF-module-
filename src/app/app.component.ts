@@ -193,6 +193,9 @@ export class AppComponent implements OnInit{
       this.Events.forEach(event => {
         if(event.timeStamp < Date.now()){
           event.isExpired = true;
+          this.Events = this.Events.filter(
+            (eventItem) => eventItem.id !== event.id
+          );
         }
       });
     }, 1000);
