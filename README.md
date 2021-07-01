@@ -1,4 +1,4 @@
-<h3 align="center">Angular Event Planner AApp</h3>
+<h3 align="center">Angular Event Organizer App</h3>
 
 <p align="center">
 
